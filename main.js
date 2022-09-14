@@ -1,7 +1,5 @@
 let tbody = document.querySelector("table")
 
-let orders;
-
 fetch("https://northwind.vercel.app/api/orders")
     .then(res => res.json())
     .then(data =>{
@@ -13,22 +11,15 @@ fetch("https://northwind.vercel.app/api/orders")
 
             let date = document.createElement("td");
             let dateText= new Date(element.orderDate);
-            date.innerText= dateText.getDate() + "."+ dateText.getMonth()+ "."+ dateText.getFullYear()
+            let smth = moment(dateText).format("MMM Do YY");  
+            date.innerText= smth;
             tr.appendChild(date);
 
             let dateTen = document.createElement("td");
-            let dateText= new Date(element.orderDate);
-            date.innerText= dateText.getDate() + "."+ dateText.getMonth()+ "."+ dateText.getFullYear()
-            tr.appendChild(date);
+            let dateTenText= new Date(element.orderDate);
+            dateTen.innerText= dateTenText.getDate() + "."+ dateTenText.getMonth()+ "."+ dateTenText.getFullYear()
+            tr.appendChild(dateTen);
 
             tbody.appendChild(tr)
         });
     });
-
-// orders.forEach(order => {
-//     <tr>
-//         <td>{order.id}</td>
-//         <td>Otto</td>
-//         <td>@mdo</td>
-//     </tr>
-// });
